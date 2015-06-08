@@ -20,7 +20,7 @@
 
 	function NLForm( el ) {	
 		this.el = el;
-		this.overlay = this.el.querySelector( '.nl-overlay' );
+		this.overlay = this.el.querySelectorAll( '.nl-overlay' );
 		this.fields = [];
 		this.fldOpen = -1;
 		this._init();
@@ -33,7 +33,7 @@
 				self.fldOpen++;
 				self.fields.push( new NLField( self, el, 'dropdown', self.fldOpen ) );
 			} );
-			Array.prototype.slice.call( this.el.querySelectorAll( 'input:not([type="hidden"])' ) ).forEach( function( el, i ) {
+			Array.prototype.slice.call( this.el.querySelectorAll( 'input' ) ).forEach( function( el, i ) {
 				self.fldOpen++;
 				self.fields.push( new NLField( self, el, 'input', self.fldOpen ) );
 			} );
@@ -45,7 +45,7 @@
 				this.fields[ this.fldOpen ].close();
 			}
 		}
-	};
+	}
 
 	function NLField( form, el, type, idx ) {
 		this.form = form;
@@ -92,13 +92,12 @@
 			this.fld = document.createElement( 'div' );
 			this.fld.className = 'nl-field nl-ti-text';
 			this.toggle = document.createElement( 'a' );
-			this.toggle.innerHTML = this.elOriginal.getAttribute('value')? this.elOriginal.getAttribute('value'): this.elOriginal.getAttribute('placeholder');
+			this.toggle.innerHTML = this.elOriginal.getAttribute( 'placeholder' );
 			this.toggle.className = 'nl-field-toggle';
 			this.optionsList = document.createElement( 'ul' );
 			this.getinput = document.createElement( 'input' );
-			this.getinput.setAttribute( 'type', this.elOriginal.getAttribute('type')? this.elOriginal.getAttribute('type'): '');
+			this.getinput.setAttribute( 'type', 'text' );
 			this.getinput.setAttribute( 'placeholder', this.elOriginal.getAttribute( 'placeholder' ) );
-			this.getinput.setAttribute( 'value', this.elOriginal.getAttribute('value')? this.elOriginal.getAttribute('value'): '');
 			this.getinputWrapper = document.createElement( 'li' );
 			this.getinputWrapper.className = 'nl-ti-input';
 			this.inputsubmit = document.createElement( 'button' );
@@ -175,7 +174,7 @@
 				this.elOriginal.value = this.getinput.value;
 			}
 		}
-	};
+	}
 
 	// add to global namespace
 	window.NLForm = NLForm;
