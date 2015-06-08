@@ -1,6 +1,6 @@
 {
   "name": "NaturalLanguageForm",
-  "homepage": "https://github.com/codrops/NaturalLanguageForm",
+  "homepage": "https://github.com/danieljoppi/NaturalLanguageForm",
   "main": [
     "css/component.css",
     "js/nlform.js",
